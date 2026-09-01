@@ -541,17 +541,15 @@ if (menuToggle && nav) {
   "whatsapp-float",
   "footer-phone"
 ].forEach((id) => {
-
-  const element =
-    document.getElementById(id);
+  const element = document.getElementById(id);
 
   if (element) {
+    element.setAttribute("href", whatsappUrl());
 
-    element.href =
-      whatsappUrl();
-
+    element.addEventListener("click", function () {
+      window.open(whatsappUrl(), "_blank");
+    });
   }
-
 });
 
 
