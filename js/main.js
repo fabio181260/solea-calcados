@@ -264,6 +264,7 @@ const products = [
 
 
 // =====================================================
+// // =====================================================
 // WHATSAPP
 // =====================================================
 
@@ -274,11 +275,7 @@ function isMobileDevice() {
 function whatsappUrl(message = DEFAULT_MESSAGE) {
   const encodedMessage = encodeURIComponent(message);
 
-  if (isMobileDevice()) {
-    return "whatsapp://send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedMessage;
-  }
-
-  return "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedMessage;
+  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedMessage;
 }
 // =====================================================
 // FORMATAÇÃO DO PREÇO
@@ -401,14 +398,13 @@ function renderProducts(filter = "todos") {
           target="_blank" 
           rel="noopener noreferrer"
 
-              
            > 
              Comprar no WhatsApp 
              </a>
         
 
           </div>
-
+ 
         </article>
       `
     )
@@ -540,6 +536,7 @@ if (menuToggle && nav) {
 
 // =====================================================
 // =====================================================
+// // =====================================================
 // BOTÕES WHATSAPP
 // =====================================================
 
@@ -550,18 +547,18 @@ if (menuToggle && nav) {
   "whatsapp-float",
   "footer-phone"
 ].forEach((id) => {
+
   const element = document.getElementById(id);
 
   if (element) {
+
     element.setAttribute("href", whatsappUrl());
+
     element.setAttribute("target", "_blank");
     element.setAttribute("rel", "noopener noreferrer");
 
-    element.addEventListener("click", (event) => {
-      event.preventDefault();
-      window.open(whatsappUrl(), "_blank");
-    });
   }
+
 });
 // ==========================a===========================
 // INICIAR PRODUTOS

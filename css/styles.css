@@ -560,6 +560,7 @@ h2 {
 }
 
 @media (max-width: 760px) {
+
   .nav {
     position: absolute;
     top: var(--header);
@@ -604,12 +605,17 @@ h2 {
 
   .hero__overlay {
     background:
-      linear-gradient(180deg, rgba(22, 17, 14, 0.18) 0%, rgba(22, 17, 14, 0.45) 38%, rgba(22, 17, 14, 0.92) 100%);
+      linear-gradient(
+        180deg,
+        rgba(22, 17, 14, 0.18) 0%,
+        rgba(22, 17, 14, 0.45) 38%,
+        rgba(22, 17, 14, 0.92) 100%
+      );
   }
 
   .hero__content {
-    padding: 42vh 0 28px;
-    gap: 24px;
+    padding: 220px 0 32px;
+    gap: 20px;
   }
 
   .hero__copy {
@@ -618,7 +624,8 @@ h2 {
 
   .hero__lead {
     max-width: none;
-    font-size: 1rem;
+    font-size: 0.96rem;
+    line-height: 1.5;
   }
 
   .hero__cta {
@@ -637,6 +644,123 @@ h2 {
   }
 
   h1 {
-    max-width: 11ch;
+    max-width: 10ch;
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+
+
+  @media (max-width: 760px) {
+
+    .nav {
+      position: absolute;
+      top: var(--header);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      flex-direction: column;
+      padding: 16px 20px 20px;
+      border-bottom: 1px solid var(--line);
+      display: none;
+    }
+  
+    .nav.is-open {
+      display: flex;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  
+    .header__whatsapp {
+      display: none;
+    }
+  
+    .category-grid,
+    .product-grid,
+    .benefits__grid,
+    .footer__grid,
+    .cta-banner__inner {
+      grid-template-columns: 1fr;
+      flex-direction: column;
+    }
+  
+    .hero {
+      min-height: auto;
+      align-items: end;
+    }
+  
+    .hero__media img {
+      object-position: center 28%;
+    }
+  
+    .hero__overlay {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(22, 17, 14, 0.18) 0%,
+          rgba(22, 17, 14, 0.45) 38%,
+          rgba(22, 17, 14, 0.92) 100%
+        );
+    }
+  
+    .hero__content {
+      padding: 220px 0 32px;
+      gap: 20px;
+    }
+  
+    .hero__copy {
+      max-width: none;
+    }
+  
+    .hero__lead {
+      max-width: none;
+      font-size: 0.96rem;
+      line-height: 1.5;
+    }
+  
+    .hero__cta {
+      margin-top: 22px;
+    }
+  
+    .hero__cta .btn {
+      flex: 1 1 10rem;
+    }
+  
+    .hero__stats {
+      grid-template-columns: 1fr;
+      max-width: none;
+      gap: 12px;
+      padding-top: 16px;
+    }
+  
+    h1 {
+      max-width: 10ch;
+      font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+  
+    .whatsapp-float {
+      width: 54px;
+      height: 54px;
+      right: 14px;
+      bottom: 14px;
+    }
+  
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+    }
+  
   }
 }
