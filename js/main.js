@@ -267,21 +267,26 @@ const products = [
 // WHATSAPP
 // =====================================================
 
-function whatsappUrl(message = DEFAULT_MESSAGE) {
-  return `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
+function whatsappUrl(message = DEFAULT_MESSAGE) {
+  const encodedMessage = encodeURIComponent(message);
+
+  if (isMobileDevice()) {
+    return "whatsapp://send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedMessage;
+  }
+
+  return "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedMessage;
+}
 // =====================================================
-// FORMATAÇÃO DE PREÇO
+// FORMATAÇÃO DO PREÇO
 // =====================================================
 
 function formatPrice(value) {
-  return `${value.toLocaleString("pt-AO", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  })} Kz`;
+  return new Intl.NumberFormat("pt-AO").format(value) + " Kz";
 }
-
 
 // =====================================================
 // MENSAGEM DO PRODUTO
@@ -390,9 +395,12 @@ function renderProducts(filter = "todos") {
 
             </div>
 
-           <a 
-             class="btn btn--primary" 
-             href="${whatsappUrl(productMessage(item))}" 
+          <a 
+          class="btn btn--primary" 
+          href="${whatsappUrl(productMessage(item))}"
+          target="_blank" 
+          rel="noopener noreferrer"
+
               
            > 
              Comprar no WhatsApp 
@@ -531,6 +539,7 @@ if (menuToggle && nav) {
 
 
 // =====================================================
+// =====================================================
 // BOTÕES WHATSAPP
 // =====================================================
 
@@ -545,16 +554,18 @@ if (menuToggle && nav) {
 
   if (element) {
     element.setAttribute("href", whatsappUrl());
+    element.setAttribute("target", "_blank");
+    element.setAttribute("rel", "noopener noreferrer");
 
-    element.addEventListener("click", function () {
+    element.addEventListener("click", (event) => {
+      event.preventDefault();
       window.open(whatsappUrl(), "_blank");
     });
   }
 });
-
-
-// =====================================================
+// ==========================a===========================
 // INICIAR PRODUTOS
 // =====================================================
 
 renderProducts("todos");
+
